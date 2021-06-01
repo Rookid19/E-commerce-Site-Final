@@ -1,0 +1,34 @@
+{% extends "layout2.html" %}
+
+{% block title %}
+    Edit
+{% endblock %}
+
+{% block body %}
+	<div class="container" id="topdiv5">
+		<h5 class="card-title">Edit your Product</h5>
+		<form action="{{ url_for('edit', pro_id = result.pro_id) }}" method="POST">
+			<div class="form-group">
+	    		<label for="exampleFormControlTextarea1">Category</label>
+	    		<textarea class="form-control" id="exampleFormControlTextarea1" rows="1"name="category" required>{{result.category}}</textarea>
+	  		</div>
+	  		<div class="form-group">
+	    		<label for="exampleFormControlTextarea1">Name</label>
+	    		<textarea class="form-control" id="exampleFormControlTextarea1" rows="1" name="pro_name" required>{{result.name}}</textarea>
+	  		</div>
+	  		<div class="form-group">
+	    		<label for="exampleFormControlTextarea1">Description</label>
+	    		<textarea class="form-control" id="exampleFormControlTextarea1" rows="1" name="description" required>{{result.description}}</textarea>
+	  		</div>
+			<div class="form-group">
+				<label for="exampleFormControlTextarea1">Price</label>
+				<textarea class="form-control" id="exampleFormControlTextarea1" rows="1"name="price" required>{{result.price}}</textarea>
+	  		</div>
+	  		<div class="form-group">
+	    		<label for="exampleFormControlTextarea1">Comments</label>
+	    		<textarea class="form-control" id="exampleFormControlTextarea1" rows="1" name="comments" required>{{result.comments}}</textarea>
+	  		</div>
+	  		<button type="submit" class="btn btn-primary">Done</button>
+		</form>
+	</div>
+{% endblock %}

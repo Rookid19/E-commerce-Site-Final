@@ -1,0 +1,152 @@
+{% extends "layout.html" %} {% block title %} Index {% endblock %} {% block body
+  %}
+  
+  <!--  -->
+  
+  <div class="container">
+    <div class="navbar">
+      <div class="logo">
+        <img src="static/images/Vendor3.png" width="125px" /> <br />
+        <img src="static/images/gh.png" width="90px" style=" padding-left: 25px; margin-top: -10px;"/>
+      </div>
+      <nav>
+        <ul id="MenuItems">
+          <li><a href="{{url_for('index')}}">Home</a></li>
+          <li><a href="">Products</a></li>
+          <li>
+            <a href="">Sign In ▾</a>
+            <ul class="dropdown">
+              <li><a href="{{url_for('loginMerchant')}}">Vendor</a></li>
+              <li><a href="{{url_for('loginCustomer')}}">Customer</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <ul>
+        <li class="cart">
+          <a href="{{url_for('cart')}}">
+            <img src="static/images/cart.png" width="30px" height="30px" /><span>0</span>
+          </a> 
+  
+        </li>  
+      </ul>
+      
+      </a>
+      <h1 class="addCart"></h1>
+    </div>
+  </div>
+  
+  
+  {% if rows %}
+  
+  <div class="small-container">
+    {% for row in rows %}
+    <div class="row1">
+      <div class="col-4">
+        <img src="{{ url_for('static_dir', path = 'images/'+row.filename) }}" />
+        <h4>{{row.name}}</h4>
+        <p>GHS {{row.price}} .00</p>
+        <a class="add-cart cart-1" href="#">
+        <button href="" class="btn">Add to Cart</button>
+
+        </a>
+       
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+  <style>
+    .navbar h1:after {
+      content: attr(data-count); 
+    }
+    .add-cart{
+      font-size: medium;
+      /* font-weight:lighter; */
+    }
+  </style>
+  <script>
+    let carts =document.querySelectorAll('.add-cart');
+  
+    let products={{ rows | safe }};
+  
+    function onLoadCartNumbers(){
+      let productNumbers = localStorage.getItem('cartNumbers'); 
+      
+      if(productNumbers){
+        document.querySelector('span').textContent = productNumbers;
+  
+      }
+    }
+  
+    for(let i=0; i < carts.length; i++){
+    carts[i].addEventListener('click',() => {
+        cartNumbers(products[i]);
+        totalCost(products[i])
+      })
+    }
+  
+    function cartNumbers(products){
+    
+      let productNumbers = localStorage.getItem('cartNumbers');
+    
+      
+  
+      productNumbers =parseInt(productNumbers);
+  
+      if(productNumbers){
+        localStorage.setItem('cartNumbers', productNumbers +1);
+        document.querySelector('span').textContent = productNumbers + 1;
+      }
+      else{
+        localStorage.setItem('cartNumbers', 1);
+        document.querySelector('span').textContent = 1;
+      }
+  
+      setItems(products);
+    }
+  
+    function setItems(products){
+      let cartItems =localStorage.getItem('productsInCart');
+      cartItems =JSON.parse(cartItems);
+      
+      if(cartItems !=null){
+        if(cartItems[products.name] ==undefined){
+          cartItems={
+            ...cartItems,
+            [products.name]:products
+          }
+        }
+        cartItems[products.name].inCart +=1;
+        
+      } else{
+        products.inCart= 1;
+        cartItems={
+          [products.name]:products
+        }
+        
+      }
+  
+  
+      
+      localStorage.setItem("productsInCart", JSON.stringify(cartItems));
+       
+    }
+    function totalCost(products){
+      //console.log("The product price is", products.price);
+      let cartCost = localStorage.getItem('totalCost');
+      console.log("My cartCost is", cartCost);
+      console.log(typeof cartCost);
+  
+      if(cartCost !=null){
+        cartCost=parseInt(cartCost);
+        localStorage.setItem("totalCost",cartCost + products.price);
+      }else{
+        localStorage.setItem("totalCost", products.price);
+      }
+      
+    }
+    onLoadCartNumbers();
+  </script>
+  
+  {% endblock %}

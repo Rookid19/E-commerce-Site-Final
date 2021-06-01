@@ -1,0 +1,124 @@
+
+{% extends "layout.html" %} {% block title %} Index {% endblock %} {% block body
+%}
+
+<div class="header">
+  <div class="container">
+    <div class="navbar">
+      <div class="logo">
+        <img src="static/images/Vendor3.png" width="125px" /> <br />
+        <img src="static/images/gh.png" width="90px" style=" padding-left: 25px; margin-top: -10px;"/>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="">Home</a></li>
+          <li>
+            <a href="">Sign In ▾</a>
+            <ul class="dropdown">
+              <li><a href="{{url_for('loginMerchant')}}">Vendor</a></li>
+              <li><a href="{{url_for('loginCustomer')}}">Customer</a></li>
+            </ul>
+          </li>
+        </ul>
+    </div>
+    <hr class = 'solid'>
+    <div class="row">
+      <div class="col-2">
+        <h1>
+          Get Things You Need<br />
+          At Affordable prices!
+        </h1>
+        <a href="{{url_for('loginCustomer')}}" class="btn">Explore Now &#8594; </a>
+      </div>
+      <div class="col-2">
+        <img src="static/images/image1.png" />
+      </div>
+    </div>
+  </div>
+</div>
+<!-- -----featured categories----- -->
+<div class="categories">
+  <div class="small-container">
+    <div class="row">
+      <div class="col-3">
+        <img src="static/images/category-1.jpg" />
+      </div>
+      <div class="col-3">
+        <img src="static/images/category-1.jpg" />
+      </div>
+      <div class="col-3">
+        <img src="static/images/category-1.jpg" />
+      </div>
+    </div>
+  </div>
+</div>
+<!-- featured products -->
+<div class="small-container">
+  <h2 class="title">Products</h2>
+  <div class="row">
+    <div class="col-4">
+      <img src="static/images/product-1.jpg" />
+      <h4>Red T-Shirt</h4>
+      <p>Ghc 50</p>
+    </div>
+    <div class="col-4">
+      <img src="static/images/product-2.jpg" />
+      <h4>Shoes</h4>
+      <p>Ghc 50</p>
+    </div>
+    <div class="col-4">
+      <img src="static/images/product-3.jpg" />
+      <h4>Joggers</h4>
+      <p>Ghc 50</p>
+    </div>
+    <div class="col-4">
+      <img src="static/images/product-4.jpg" />
+      <h4>Blue T-Shirt</h4>
+      <p>Ghc 50</p>
+    </div>
+  </div>
+  <h2 class="title">Latest Products</h2>
+  <div class="row">
+    <div class="col-4">
+      <img src="static/images/product-5.jpg" />
+      <h4>Grey Shoes</h4>
+      <p>Ghc 50</p>
+    </div>
+    <div class="col-4">
+      <img src="static/images/product-6.jpg" />
+      <h4>Black T-Shirt</h4>
+      <p>Ghc 50</p>
+    </div>
+    <div class="col-4">
+      <img src="static/images/product-7.jpg" />
+      <h4>Socks</h4>
+      <p>Ghc 50</p>
+    </div>
+    <div class="col-4">
+      <img src="static/images/product-8.jpg" />
+      <h4>Wrist-Watch</h4>
+      <p>Ghc 50</p>
+    </div>
+  </div>
+</div>
+<!-- Reviews  -->
+<div class="testimonial">
+  <div class="small-container">
+    <h2 class="title">Reviews</h2>
+    <div class="row">
+      <div class="col-3">
+        <p>Exclusive Discounts</p>
+        <img src="static/images/user-2.png" />
+      </div>
+      <div class="col-3">
+        <p>Really affordable price you can buy from here</p>
+        <img src="static/images/user-1.png" />
+      </div>
+      <div class="col-3">
+        <p>Shop here, you wont regret it</p>
+        <img src="static/images/user-3.png" />
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
