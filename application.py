@@ -141,7 +141,7 @@ def home():
 	if request.method == "POST":
 		image = request.files['image']
 		filename = str(uuid.uuid1())+os.path.splitext(image.filename)[1]
-		image.save(os.path.join("E-commerce-Site-Final/static/images/", filename))
+		image.save(os.path.join("static/images/", filename))
 		category= request.form.get("category")
 		name = request.form.get("pro_name")
 		description = request.form.get("description")
